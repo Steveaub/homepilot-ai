@@ -2,80 +2,62 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>HomePilot - Paste a Listing</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 20px;
-      }
-      input[type="text"] {
-        padding: 8px;
-        width: 60%;
-        margin-bottom: 10px;
-      }
-      button {
-        padding: 8px 12px;
-        margin-left: 10px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-      button:hover {
-        background-color: #0056b3;
-      }
-      pre {
-        background-color: #f8f9fa;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        overflow-x: auto;
-      }
-      ul {
-        padding-left: 20px;
-      }
-    </style>
+    <title>Welcome to HomePilot AI</title>
+    <link href="/output.css" rel="stylesheet" />
   </head>
+  <body class="bg-gray-50 text-gray-700 font-sans">
+    <div class="max-w-4xl mx-auto p-8">
+      <header class="text-center mb-10">
+        <h1 class="text-5xl font-extrabold text-blue-700 mb-4">
+          Welcome to HomePilot AI
+        </h1>
+        <p class="text-lg text-gray-600">
+          Your trusted partner in navigating the home buying journey.
+        </p>
+      </header>
 
-  <body>
-    <h1>HomePilot</h1>
+      <section class="bg-white p-6 rounded-lg shadow-md mb-10">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Paste a Listing</h2>
+        <div class="flex flex-col md:flex-row gap-4">
+          <input
+            type="text"
+            id="listingUrl"
+            placeholder="Paste Zillow or Redfin URL here"
+            class="border border-gray-300 rounded-md p-3 flex-1 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+          />
+          <button
+            onclick="parseListing()"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md px-6 py-3"
+          >
+            Parse Listing
+          </button>
+        </div>
+      </section>
 
-    <p>
-      <strong
-        >Real estate rules are changing — but old habits are hard to
-        break.</strong
-      >
-    </p>
-    <p>
-      Today, buyers are often asked to sign agreements where they commit to
-      paying a 2.5–3% commission — sometimes before they even choose a home.
-    </p>
-    <p>
-      While commissions are now negotiable in theory, in practice many buyers
-      and sellers still face pressure to stick to outdated norms.
-    </p>
-    <p>
-      HomePilot gives you the tools to see your real options, negotiate fairly,
-      and control your home buying journey.
-      <a href="/learn-more.html">Learn how</a>.
-    </p>
+      <section class="mb-10">
+        <h2 class="text-3xl font-bold text-gray-800 mb-4">Listing Details</h2>
+        <pre
+          id="listingOutput"
+          class="bg-gray-100 shadow p-4 rounded-md border border-gray-300 overflow-x-auto whitespace-pre-wrap text-sm"
+        >
+          Paste a listing to see details here...
+        </pre>
+      </section>
 
-    <input
-      type="text"
-      id="listingUrl"
-      placeholder="Paste Zillow or Redfin URL here"
-    />
-    <button onclick="parseListing()">Parse Listing</button>
+      <section>
+        <h2 class="text-3xl font-bold text-gray-800 mb-4">Next Steps</h2>
+        <ul
+          id="nextStepsOutput"
+          class="list-disc list-inside text-gray-700 space-y-2"
+        >
+          <!-- Checklist items will be dynamically added here -->
+        </ul>
+      </section>
 
-    <p id="loadingMessage" style="color: blue"></p>
-    <p id="errorMessage" style="color: red"></p>
-
-    <h2>Listing Details:</h2>
-    <pre id="listingOutput">Paste a listing to see details here...</pre>
-
-    <h2>Next Steps:</h2>
-    <ul id="nextStepsOutput"></ul>
+      <footer class="mt-10 text-center text-gray-500 text-sm">
+        &copy; 2025 HomePilot AI. All rights reserved.
+      </footer>
+    </div>
 
     <script src="app.js"></script>
   </body>

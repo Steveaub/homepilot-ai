@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for HomePilot AI */
+body {
+  font-family: "Inter", sans-serif;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Additional utility classes for spacing and layout */
+.list-inside {
+  padding-left: 1rem;
+}
+
+.list-disc {
+  list-style-type: disc;
+}
