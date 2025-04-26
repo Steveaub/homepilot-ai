@@ -32,10 +32,11 @@ async function parseListing() {
 
       // Safely check if data.listing exists and is non-empty
       if (data.listing && Object.keys(data.listing).length > 0) {
-        listingOutput.innerHTML = `
-          <p><strong>Here’s what we found!</strong></p>
-          <pre>${JSON.stringify(data.listing, null, 2)}</pre>
-        `;
+        listingOutput.textContent = `Here’s what we found!\n${JSON.stringify(
+          data.listing,
+          null,
+          2
+        )}`;
       } else {
         listingOutput.textContent = "No listing details available.";
       }
