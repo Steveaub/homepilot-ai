@@ -1,0 +1,93 @@
+<!-- Educational page debunking real estate myths -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Take Control of Your Home Buying Journey</title>
+  </head>
+  <body>
+    <h1>Take Control of Your Home Buying Journey</h1>
+    <p>
+      For decades, U.S. real estate commissions have been entrenched at 5–6%.
+      Recent lawsuits are starting to create change, but most buyers still don’t
+      know they have options.
+    </p>
+
+    <h2>Common Myths</h2>
+    <ul>
+      <li>
+        <button onclick="toggleExplanation('myth1')">
+          You must use a real estate agent to make an offer.
+        </button>
+        <p id="myth1" style="display: none">
+          Reality: You can submit offers directly or through an attorney.
+          HomePilot walks you through this step if you choose to go agent-free.
+        </p>
+      </li>
+
+      <li>
+        <button onclick="toggleExplanation('myth2')">
+          Sellers always pay the agent fees.
+        </button>
+        <p id="myth2" style="display: none">
+          Reality: Buyers typically finance the commission through their
+          mortgage. HomePilot helps you understand these hidden costs.
+        </p>
+      </li>
+
+      <li>
+        <button onclick="toggleExplanation('myth3')">
+          The 3% commission is standard and non-negotiable.
+        </button>
+        <p id="myth3" style="display: none">
+          Reality: Commissions are negotiable by law — HomePilot shows you how
+          to explore flat fees or negotiate rates.
+        </p>
+      </li>
+
+      <li>
+        <button onclick="toggleExplanation('myth4')">
+          You’ll get the same access and priority when buying without an agent.
+        </button>
+        <p id="myth4" style="display: none">
+          Reality: Many agents discourage or ignore offers from unrepresented
+          buyers. HomePilot helps you navigate around those gatekeepers with
+          tools that put you in control.
+        </p>
+      </li>
+    </ul>
+
+    <h2>Behind-the-Scenes: Steering and Incentives</h2>
+    <p>
+      Many agents steer clients toward homes with higher commissions and
+      discourage offers where commission is reduced. For example, on a $500,000
+      home, 3% equals $15,000 — often financed through your mortgage, costing
+      you even more over time.
+    </p>
+
+    <h2>How HomePilot Helps</h2>
+    <p>
+      HomePilot uses AI to walk buyers through the entire process, from browsing
+      to submitting offers to managing title and escrow — without needing to
+      commit to a traditional agent. We help buyers:
+    </p>
+    <ul>
+      <li>Understand what to do and when.</li>
+      <li>Explore flat-fee support or legal help.</li>
+      <li>Navigate buying like a pro — without giving up 3% in fees.</li>
+    </ul>
+
+    <p><a href="/">← Back to HomePilot</a></p>
+
+    <script>
+      function toggleExplanation(id) {
+        const elem = document.getElementById(id);
+        if (elem.style.display === "none") {
+          elem.style.display = "block";
+        } else {
+          elem.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>

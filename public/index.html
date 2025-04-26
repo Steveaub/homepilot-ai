@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HomePilot - Paste a Listing</title>
+  </head>
+  <body>
+    <h1>HomePilot</h1>
+    <p>
+      <strong
+        >Real estate rules are changing — but old habits are hard to
+        break.</strong
+      >
+    </p>
+    <p>
+      Today, buyers are often asked to sign agreements where they commit to
+      paying a 2.5–3% commission — sometimes before they even choose a home.
+    </p>
+    <p>
+      While commissions are now negotiable in theory, in practice many buyers
+      and sellers still face pressure to stick to outdated norms.
+    </p>
+    <p>
+      HomePilot gives you the tools to see your real options, negotiate fairly,
+      and control your home buying journey. <a href="/learn-more">Learn how</a>.
+    </p>
+    <input
+      type="text"
+      id="listingUrl"
+      placeholder="Paste Zillow or Redfin URL here"
+      size="50"
+    />
+    <button onclick="parseListing()">Parse Listing</button>
+
+    <h2>Listing Details:</h2>
+    <pre id="listingOutput"></pre>
+
+    <h2>Next Steps:</h2>
+    <ul id="nextStepsOutput"></ul>
+
+    <script src="app.js"></script>
+  </body>
+</html>
