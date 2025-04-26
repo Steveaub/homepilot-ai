@@ -28,9 +28,27 @@ async function parseListing() {
 
     if (response.ok) {
       const data = await response.json();
-      listingOutput.textContent = JSON.stringify(data.listing, null, 2);
+      console.log("🚀 Listing API Response:", data);
 
-      data.nextSteps.forEach((step) => {
+      // Safely check if data.listing exists and is non-empty
+      if (data.listing && Object.keys(data.listing).length > 0) {
+        listingOutput.innerHTML = `
+          <p><strong>Here’s what we found!</strong></p>
+          <pre>${JSON.stringify(data.listing, null, 2)}</pre>
+        `;
+      } else {
+        listingOutput.textContent = "No listing details available.";
+      }
+
+      // Simple next steps (can make dynamic later)
+      const nextSteps = [
+        "Review the property details.",
+        "Get pre-approved for a mortgage.",
+        "Schedule a home inspection.",
+        "Prepare your offer letter.",
+      ];
+
+      nextSteps.forEach((step) => {
         const li = document.createElement("li");
         li.textContent = step;
         nextStepsList.appendChild(li);

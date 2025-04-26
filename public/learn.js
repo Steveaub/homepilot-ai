@@ -24,20 +24,23 @@ window.addEventListener("DOMContentLoaded", async () => {
   } catch (error) {
     console.error("Error loading topics:", error);
   }
-
-  // Function to load a topic's content
-  function loadTopic(key, topics) {
-    topicContentDiv.innerHTML = topics[key].content;
-
-    // Update active button styling
-    Array.from(topicButtonsDiv.children).forEach((btn) =>
-      btn.classList.remove("active")
-    );
-    const activeButton = Array.from(topicButtonsDiv.children).find(
-      (btn) => btn.textContent === topics[key].title
-    );
-    if (activeButton) {
-      activeButton.classList.add("active");
-    }
-  }
 });
+
+// Function to load a topic's content
+function loadTopic(key, topics) {
+  const topicContentDiv = document.getElementById("topicContent");
+  const topicButtonsDiv = document.getElementById("topicButtons");
+
+  topicContentDiv.innerHTML = topics[key].content;
+
+  // Update active button styling
+  Array.from(topicButtonsDiv.children).forEach((btn) =>
+    btn.classList.remove("active")
+  );
+  const activeButton = Array.from(topicButtonsDiv.children).find(
+    (btn) => btn.textContent === topics[key].title
+  );
+  if (activeButton) {
+    activeButton.classList.add("active");
+  }
+}

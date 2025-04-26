@@ -3,9 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <title>HomePilot - Paste a Listing</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      input[type="text"] {
+        padding: 8px;
+        width: 60%;
+        margin-bottom: 10px;
+      }
+      button {
+        padding: 8px 12px;
+        margin-left: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      pre {
+        background-color: #f8f9fa;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        overflow-x: auto;
+      }
+      ul {
+        padding-left: 20px;
+      }
+    </style>
   </head>
+
   <body>
     <h1>HomePilot</h1>
+
     <p>
       <strong
         >Real estate rules are changing — but old habits are hard to
@@ -22,18 +57,22 @@
     </p>
     <p>
       HomePilot gives you the tools to see your real options, negotiate fairly,
-      and control your home buying journey. <a href="/learn-more">Learn how</a>.
+      and control your home buying journey.
+      <a href="/learn-more.html">Learn how</a>.
     </p>
+
     <input
       type="text"
       id="listingUrl"
       placeholder="Paste Zillow or Redfin URL here"
-      size="50"
     />
     <button onclick="parseListing()">Parse Listing</button>
 
+    <p id="loadingMessage" style="color: blue"></p>
+    <p id="errorMessage" style="color: red"></p>
+
     <h2>Listing Details:</h2>
-    <pre id="listingOutput"></pre>
+    <pre id="listingOutput">Paste a listing to see details here...</pre>
 
     <h2>Next Steps:</h2>
     <ul id="nextStepsOutput"></ul>
