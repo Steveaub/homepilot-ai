@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import path from "path";
-import { parseListing } from "./api/parseListing";
+import parseListing from "./api/parseListing";
 
 const app = express();
 
@@ -11,27 +11,20 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "../public")));
 
 // API Route: Paste a listing URL and parse it
-app.post("/api/parse-listing", (async (req: Request, res: Response) => {
-  const { url } = req.body;
+app.post("/api/parse-listing", parseListing);
 
-  if (!url) {
-    return res.status(400).json({ error: "Missing URL in request body." });
-  }
+// Add routes to serve HTML pages manually
+app.get("/", (req: Request, res: Response) => {
+  res.sendFile(path.join(__dirname, "../public/pages/index.html"));
+});
 
-  try {
-    const listing = await parseListing(url);
-    const nextSteps = [
-      "Review the property details.",
-      "Schedule an inspection.",
-      "Contact the seller or your agent.",
-    ];
+app.get("/learn-more.html", (req: Request, res: Response) => {
+  res.sendFile(path.join(__dirname, "../public/pages/learn-more.html"));
+});
 
-    res.status(200).json({ listing, nextSteps });
-  } catch (error: any) {
-    console.error("Error parsing listing:", error.message);
-    res.status(500).json({ error: "Failed to parse the listing." });
-  }
-}) as express.RequestHandler);
+app.get("/learn.html", (req: Request, res: Response) => {
+  res.sendFile(path.join(__dirname, "../public/pages/learn.html"));
+});
 
 // Start the Express server
 const PORT = process.env.PORT || 3000;

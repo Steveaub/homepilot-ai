@@ -1,36 +1,23 @@
-import { parseZillowListing } from "../parsers/zillow";
-import { llmFallback } from "../services/llmFallback";
-import { enrichData } from "../services/dataEnrichment";
-import { detectSource } from "../utils/parserUtils";
+import { Request, Response } from "express";
 
-export async function parseListing(url: string) {
-  const source = detectSource(url);
-  let listingData: any;
+export default async function parseListing(
+  req: Request,
+  res: Response
+): Promise<void> {
+  // Mock JSON listing data
+  const mockData = {
+    id: 1,
+    title: "Beautiful 3-bedroom house",
+    price: "$350,000",
+    location: "123 Main St, Springfield, USA",
+    description:
+      "A lovely 3-bedroom house with a spacious backyard and modern amenities.",
+    address: "123 Main St, Springfield, USA",
+    bedrooms: 3,
+    bathrooms: 2,
+    squareFeet: 2000,
+  };
 
-  try {
-    if (source === "zillow") {
-      listingData = await parseZillowListing(url);
-    } else {
-      throw new Error("Unsupported source");
-    }
-  } catch (error) {
-    listingData = await llmFallback(url);
-
-    // If fallback also fails, return dummy data
-    if (!listingData || Object.keys(listingData).length === 0) {
-      listingData = {
-        price: 350000,
-        bedrooms: 2,
-        bathrooms: 2,
-        squareFootage: 1200,
-        lotSize: 5000,
-        yearBuilt: 2005,
-        propertyType: "Condo",
-        description:
-          "Sample fallback listing for display. This is mocked data.",
-      };
-    }
-  }
-
-  return enrichData(listingData);
+  // Send the mock data as a JSON response
+  res.json(mockData);
 }

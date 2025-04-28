@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node dist/server.js",
     "dev": "ts-node src/server.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "dev:css": "tailwindcss -i ./public/styles.css -o ./public/output.css --watch"
   },
   "dependencies": {
     "express": "^5.0.0"

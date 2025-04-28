@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HomePilot AI</title>
+    <link href="/output.css" rel="stylesheet" />
+  </head>
+  <body class="min-h-screen bg-gray-50 flex flex-col">
+    <div id="toastContainer" class="fixed top-4 right-4 space-y-2 z-50"></div>
+    <main class="flex-1 max-w-2xl mx-auto px-6 py-16">
+      <header class="text-center mb-16">
+        <h1 class="text-4xl font-bold text-blue-600 mb-4">HomePilot AI</h1>
+        <p class="text-lg text-gray-700 mb-8">
+          Your trusted guide in buying a home.
+        </p>
+        <div class="flex justify-center">
+          <a
+            href="/learn-more.html"
+            class="py-3 px-6 bg-blue-600 text-white rounded-lg hover:bg-blue-700 hover:shadow-lg transition-all duration-300 text-lg cursor-pointer mb-6"
+          >
+            Learn More About Home Buying →
+          </a>
+        </div>
+      </header>
+
+      <section class="bg-white shadow-md rounded-lg p-6 mb-16">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6">
+          Paste a Listing
+        </h2>
+        <div class="flex flex-col gap-4">
+          <input
+            type="text"
+            id="listingUrl"
+            placeholder="Paste Zillow or Redfin URL here"
+            class="w-full py-3 px-4 border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+          />
+          <button
+            id="parseButton"
+            class="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 hover:shadow-md transition-all duration-300 w-full mt-3 flex items-center justify-center gap-2"
+          >
+            <span id="parseButtonText">Parse Listing</span>
+            <svg
+              id="spinner"
+              class="hidden animate-spin h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 00-8 8h4l-3 3 3 3H4z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <section
+        id="loadingMessage"
+        class="text-center text-blue-500 mb-16 hidden"
+      >
+        Loading...
+      </section>
+      <section id="errorMessage" class="text-center text-red-500 mb-16 hidden">
+        Error message will appear here.
+      </section>
+      <section
+        id="successMessage"
+        class="text-center text-green-500 mb-16 hidden"
+      >
+        Listing successfully parsed!
+      </section>
+
+      <section class="bg-white shadow-md rounded-lg p-6 mb-16">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6">
+          Listing Details
+        </h2>
+        <div id="listingOutput" class="bg-white p-4 m-4 rounded-lg shadow-md">
+          <!-- Parsed listing details will be dynamically inserted here -->
+        </div>
+      </section>
+
+      <section class="bg-white shadow-md rounded-lg p-6 mb-16">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6">Next Steps</h2>
+        <ul
+          id="nextStepsOutput"
+          class="list-disc pl-6 text-lg text-gray-700 space-y-4"
+        >
+          <!-- Checklist items will be dynamically added here -->
+        </ul>
+      </section>
+    </main>
+
+    <footer class="text-center text-sm text-gray-500 py-16">
+      &copy; 2025 HomePilot AI. All rights reserved.
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

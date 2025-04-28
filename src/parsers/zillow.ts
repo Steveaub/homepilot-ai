@@ -11,3 +11,13 @@ export async function parseZillowListing(url: string) {
     description: "Sample Zillow listing data.",
   };
 }
+
+export function parseZillow(url: string) {
+  return {
+    address: "123 Main St, Miami, FL",
+    price: "$500,000",
+    bedrooms: 3,
+    bathrooms: 2,
+    squareFeet: 1500,
+  };
+}

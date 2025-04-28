@@ -157,6 +157,39 @@ src/
 
 ---
 
+## High-Fidelity AI Workflow
+
+HomePilot AI employs a high-fidelity AI-driven development workflow to ensure clean architecture, minimize technical debt, and deliver startup-grade execution. This workflow leverages three key components:
+
+- **ChatGPT Projects**: The brain of the operation, responsible for strategy, refinement, and planning.
+- **VS Code Copilot Agent**: The hands of the operation, executing fully refined prompts with precision.
+- **Gemini 2.5**: A secondary researcher, broadening insights and knowledge before prompt finalization.
+
+This disciplined approach emphasizes a strict separation of planning and execution, ensuring that only refined prompts are sent to the Copilot Agent for implementation. For more details, refer to the [Operating Manual](./docs/operating-manual.md).
+
+---
+
+## Development Workflow
+
+HomePilot AI is built using a high-fidelity, AI-augmented workflow:
+
+- **ChatGPT Projects** acts as the centralized strategist, architect, and co-founder with socialized memory.
+- **GitHub Copilot Agent (VS Code)** serves as the execution layer, interpreting only refined, intentional prompts.
+- **Gemini 2.5** supplements research and technical validation when needed.
+
+This structure creates startup-grade iteration speed while minimizing technical debt.  
+Every feature, task, and architectural decision is planned intentionally before any code is generated.
+
+Learn more in [OPERATIONS.md](./OPERATIONS.md).
+
+---
+
+## Development Standards
+
+- [Copilot Agent Execution Template](docs/copilot-agent-execution-template.md)
+
+---
+
 ## 🤖 Built With
 
 - TypeScript + Node.js
