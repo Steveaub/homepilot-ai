@@ -22,7 +22,7 @@
 ### HomePilot AI vs Modern Realty
 
 - **HomePilot:** No brokerage affiliation.
-- **Modern Realty:** Licensed brokerage, limited scalability due to MLS ties.
+- **Modern Realty:** Licensed brokerage, limited scalability due to MLS ties. Modern Realty has publicly stated that they are "not necessarily trying to uproot the industry," but instead seek to enhance the real estate buying experience by supporting agents. This positions Modern Realty primarily as a workflow optimization tool for agents rather than a disruptor of the agent-driven model. In contrast, HomePilot AI is focused on empowering buyers directly, offering an alternative to the traditional agent-centric approach and reducing structural barriers to homeownership.
 
 ### HomePilot AI vs reAlpha
 

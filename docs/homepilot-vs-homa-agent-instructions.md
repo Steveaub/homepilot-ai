@@ -20,6 +20,10 @@ Both offer 24/7 AI support and offer calculation. HomePilot AI adds escalation t
 
 Both platforms avoid brokerage licensing and fiduciary duty. HomePilot AI emphasizes task-based guidance to reduce risk further.
 
+### Modern Realty Positioning
+
+Modern Realty co-founder has publicly stated that they are "not necessarily trying to uproot the industry," but instead seek to enhance the real estate buying experience by supporting agents. This positions Modern Realty primarily as a workflow optimization tool for agents rather than a disruptor of the agent-driven model. In contrast, HomePilot AI is focused on empowering buyers directly, offering an alternative to the traditional agent-centric approach and reducing structural barriers to homeownership.
+
 ## Strategic Advantages for HomePilot AI
 
 - Comprehensive task management
