@@ -1,6 +1,9 @@
 import express, { Request, Response } from "express";
 import path from "path";
 import parseListing from "./api/parseListing";
+import dotenv from "dotenv";
+
+dotenv.config({ path: ".env.local" });
 
 const app = express();
 
@@ -10,8 +13,22 @@ app.use(express.json());
 // Middleware to serve static files from the public directory
 app.use(express.static(path.join(__dirname, "../public")));
 
+// Wrap the Next.js handler to make it compatible with Express
+const expressParseListing = async (req: Request, res: Response) => {
+  const nextReq = { body: req.body, method: req.method } as any;
+  const nextRes = {
+    status: (statusCode: number) => {
+      res.status(statusCode);
+      return nextRes;
+    },
+    json: (data: any) => res.json(data),
+  } as any;
+
+  await parseListing(nextReq, nextRes);
+};
+
 // API Route: Paste a listing URL and parse it
-app.post("/api/parse-listing", parseListing);
+app.post("/api/parseListing", expressParseListing);
 
 // Add routes to serve HTML pages manually
 app.get("/", (req: Request, res: Response) => {

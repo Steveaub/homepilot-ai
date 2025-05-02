@@ -37,60 +37,62 @@ function showToast(message, type) {
   }, 3000);
 }
 
-// Helper function to show listing details
+// Add debugging log to verify fetched object structure
 function showListingDetails(listing) {
+  console.log("Fetched listing data:", listing); // Debugging log
+
   const listingOutput = document.getElementById("listingOutput");
   if (listing && Object.keys(listing).length > 0) {
     const {
-      price,
-      bedrooms,
-      bathrooms,
-      squareFootage,
-      propertyType,
-      yearBuilt,
-      lotSize,
-      address,
+      price = "N/A",
+      bedrooms = "N/A",
+      bathrooms = "N/A",
+      squareFootage = "N/A",
+      propertyType = "N/A",
+      yearBuilt = "N/A",
+      lotSize = "N/A",
+      address = "N/A",
     } = listing;
 
     listingOutput.innerHTML = `
       <div class="bg-white shadow-md rounded-lg p-6 mb-6">
         ${
-          address
+          address !== "N/A"
             ? `<p class="text-gray-700 text-lg mb-2 border-b pb-2"><strong class="font-semibold">📍 Address:</strong> ${address}</p>`
             : ""
         }
         ${
-          price
+          price !== "N/A"
             ? `<p class="text-gray-700 mb-2"><strong class="font-semibold">🏡 Price:</strong> $${price.toLocaleString()}</p>`
             : ""
         }
         ${
-          bedrooms
+          bedrooms !== "N/A"
             ? `<p class="text-gray-700 mb-2"><strong class="font-semibold">🛏️ Bedrooms:</strong> ${bedrooms}</p>`
             : ""
         }
         ${
-          bathrooms
+          bathrooms !== "N/A"
             ? `<p class="text-gray-700 mb-2"><strong class="font-semibold">🛁 Bathrooms:</strong> ${bathrooms}</p>`
             : ""
         }
         ${
-          squareFootage
+          squareFootage !== "N/A"
             ? `<p class="text-gray-700 mb-2"><strong class="font-semibold">📏 Square Footage:</strong> ${squareFootage.toLocaleString()} sqft</p>`
             : ""
         }
         ${
-          lotSize
+          lotSize !== "N/A"
             ? `<p class="text-gray-700 mb-2"><strong class="font-semibold">🌳 Lot Size:</strong> ${lotSize.toLocaleString()} sqft</p>`
             : ""
         }
         ${
-          yearBuilt
+          yearBuilt !== "N/A"
             ? `<p class="text-gray-700 mb-2"><strong class="font-semibold">📅 Year Built:</strong> ${yearBuilt}</p>`
             : ""
         }
         ${
-          propertyType
+          propertyType !== "N/A"
             ? `<p class="text-gray-700 mb-2"><strong class="font-semibold">🏠 Property Type:</strong> ${propertyType}</p>`
             : ""
         }
@@ -155,50 +157,47 @@ function generateTasks(listingData) {
   });
 }
 
-// Refactored parseListing function
+// Update the parseListing function to use real data responses
 async function parseListing() {
-  const parseButton = document.getElementById("parseButton");
-  const parseButtonText = document.getElementById("parseButtonText");
-  const spinner = document.getElementById("spinner");
-  const url = document.getElementById("listingUrl").value;
+  const urlInput = document.getElementById("listingUrl");
+  const url = urlInput.value.trim();
 
-  // Update button state to show loading
-  parseButton.disabled = true;
-  parseButtonText.classList.add("hidden");
-  spinner.classList.remove("hidden");
+  if (!url) {
+    showErrorMessage("Please paste a valid Zillow URL.");
+    return;
+  }
 
   try {
-    // Reset messages and outputs
-    resetUI();
+    showLoadingMessage("Fetching listing details...");
 
-    if (!url) {
-      showErrorMessage("Please paste a URL first.");
+    const response = await fetch("/api/parseListing", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ url }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      showErrorMessage(errorData.message || "Failed to fetch listing details.");
       return;
     }
 
-    showLoadingMessage("Loading...");
+    const { address, price, bedrooms, bathrooms } = await response.json();
 
-    const data = await fetchListingData(url);
-
-    if (data) {
-      handleSuccess(data);
-      showToast("Listing parsed successfully!", "success");
-
-      // Scroll to listing output after success
-      const listingOutput = document.getElementById("listingOutput");
-      listingOutput.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else {
-      showErrorMessage("Error parsing listing. Please try again.");
-      showToast("Failed to parse listing.", "error");
+    if (!address || !price || !bedrooms || !bathrooms || address === "N/A") {
+      showErrorMessage(
+        "Listing parsed, but data is incomplete. This may be a Scrapeak or Zillow issue."
+      );
+      return;
     }
+
+    showListingDetails({ address, price, bedrooms, bathrooms });
+    showToast("Listing details fetched successfully!", "success");
   } catch (error) {
-    handleError(error);
-    showToast("Failed to parse listing.", "error");
+    showErrorMessage("An error occurred while fetching the listing.");
+    console.error("Error fetching listing details:", error);
   } finally {
-    // Reset button state
-    parseButton.disabled = false;
-    parseButtonText.classList.remove("hidden");
-    spinner.classList.add("hidden");
+    showLoadingMessage("");
   }
 }
 
@@ -212,7 +211,7 @@ function resetUI() {
 
 // Helper function to fetch listing data
 async function fetchListingData(url) {
-  const response = await fetch("http://localhost:3000/api/parse-listing", {
+  const response = await fetch("http://localhost:3000/api/parseListing", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ url }),
@@ -227,6 +226,13 @@ async function fetchListingData(url) {
 
 // Helper function to handle success response
 function handleSuccess(data) {
+  if (!data || !data.address) {
+    showErrorMessage(
+      "Failed to fetch valid listing details. Please try again."
+    );
+    return;
+  }
+
   console.log("🚀 Listing API Response:", data);
   showListingDetails(data.listing);
   generateTasks(data.listing);
@@ -248,6 +254,9 @@ function handleError(error) {
   console.error("API call failed:", error);
 }
 
+// Attach event listener to the Parse Listing button
+document.getElementById("parseButton").addEventListener("click", parseListing);
+
 // Event listener for DOMContentLoaded
 document.addEventListener("DOMContentLoaded", () => {
   const parseButton = document.getElementById("parseButton");
@@ -264,7 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
     listingOutput.textContent = "Loading...";
 
     try {
-      const response = await fetch("http://localhost:3000/api/parse-listing", {
+      const response = await fetch("http://localhost:3000/api/parseListing", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url }),
@@ -272,6 +281,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (response.ok) {
         const data = await response.json();
+        if (!data || !data.address) {
+          listingOutput.textContent =
+            "Failed to fetch valid listing details. Please try again.";
+          return;
+        }
         listingOutput.textContent = JSON.stringify(data, null, 2);
       } else {
         listingOutput.textContent = "Failed to fetch listing details.";

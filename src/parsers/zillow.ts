@@ -1,3 +1,5 @@
+import cheerio from "cheerio";
+
 export async function parseZillowListing(url: string) {
   // Simulate parsing a Zillow listing
   return {
@@ -12,12 +14,37 @@ export async function parseZillowListing(url: string) {
   };
 }
 
-export function parseZillow(url: string) {
-  return {
-    address: "123 Main St, Miami, FL",
-    price: "$500,000",
-    bedrooms: 3,
-    bathrooms: 2,
-    squareFeet: 1500,
-  };
+export async function parseZillow(url: string, html: string) {
+  try {
+    if (!html) {
+      throw new Error("HTML content is empty or undefined.");
+    }
+
+    const $ = cheerio.load(html);
+    const nextDataScript = $("script#__NEXT_DATA__").html();
+
+    if (!nextDataScript) {
+      console.error("__NEXT_DATA__ script not found in Zillow HTML.");
+      return null;
+    }
+
+    const nextData = JSON.parse(nextDataScript);
+    const propertyData = nextData.props?.pageProps?.property;
+
+    if (!propertyData) {
+      console.error("Property data missing in __NEXT_DATA__.", nextData);
+      return null;
+    }
+
+    return {
+      address: propertyData.address,
+      price: propertyData.price,
+      bedrooms: propertyData.bedrooms,
+      bathrooms: propertyData.bathrooms,
+      squareFeet: propertyData.livingArea,
+    };
+  } catch (error) {
+    console.error("Error parsing Zillow HTML:", error);
+    return null;
+  }
 }

@@ -1,4 +1,4 @@
-# HomePilot AI - Hacker News Real Estate Disruption Insights Analysis 
+# HomePilot AI - Hacker News Real Estate Disruption Insights Analysis
 
 ## Overview
 
@@ -38,6 +38,7 @@ This document captures detailed insights derived from a Hacker News discussion f
 
 - Companies like Modern Realty and reAlpha still act as licensed brokerages.
 - This brings regulatory burdens, fiduciary duties, and legal risks.
+- Modern Realty's co-founder has stated they are "not necessarily trying to uproot the industry," but rather aim to enhance the real estate buying experience by supporting agents.
 
 **HomePilot AI Application:**
 

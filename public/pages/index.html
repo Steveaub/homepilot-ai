@@ -70,13 +70,31 @@
         <h2 class="text-2xl font-semibold text-gray-800 mb-6">
           Listing Details
         </h2>
-        <div
-          id="listingOutput"
-          class="bg-white p-4 rounded-lg shadow-md overflow-x-auto whitespace-pre-wrap break-words w-full max-w-full"
-        >
-          <!-- JSON output will appear here -->
-        </div>
+        <section id="listing-details" class="mt-6 hidden">
+          <div class="mb-2">
+            <span class="font-bold">🏠 Address:</span>
+            <span id="listing-address">N/A</span>
+          </div>
+
+          <div class="mb-2">
+            <span class="font-bold">💰 Price:</span>
+            <span id="listing-price">N/A</span>
+          </div>
+
+          <div class="mb-2">
+            <span class="font-bold">🛏️ Bedrooms:</span>
+            <span id="listing-bedrooms">N/A</span>
+          </div>
+
+          <div class="mb-2">
+            <span class="font-bold">🛁 Bathrooms:</span>
+            <span id="listing-bathrooms">N/A</span>
+          </div>
+        </section>
       </section>
+
+      <!-- Added a placeholder for listingOutput to prevent null reference errors -->
+      <section id="listingOutput" class="hidden"></section>
 
       <section class="bg-white shadow-md rounded-lg p-6 mb-16">
         <h2 class="text-2xl font-semibold text-gray-800 mb-6">Next Steps</h2>
@@ -86,6 +104,10 @@
         >
           <!-- Next step tasks will be dynamically added here -->
         </ul>
+        <div id="next-steps" class="mt-6 hidden">
+          <h2 class="text-2xl font-semibold mb-4">Next Steps</h2>
+          <ul id="next-steps-list" class="list-disc pl-5"></ul>
+        </div>
       </section>
     </main>
 
@@ -95,12 +117,70 @@
 
     <script src="/app.js"></script>
     <script>
-      document.getElementById("parseButton").addEventListener("click", (e) => {
-        e.preventDefault();
-        document
-          .getElementById("listingOutput")
-          .scrollIntoView({ behavior: "smooth" });
-      });
+      document
+        .getElementById("parseButton")
+        .addEventListener("click", async (e) => {
+          e.preventDefault();
+
+          const urlInput = document.getElementById("listingUrl");
+          const url = urlInput.value.trim();
+
+          if (!url) {
+            alert("Please enter a valid URL.");
+            return;
+          }
+
+          const loadingMessage = document.getElementById("loadingMessage");
+          const errorMessage = document.getElementById("errorMessage");
+          const successMessage = document.getElementById("successMessage");
+          const listingDetails = document.getElementById("listing-details");
+
+          // Reset messages and details
+          loadingMessage.classList.remove("hidden");
+          errorMessage.classList.add("hidden");
+          successMessage.classList.add("hidden");
+          listingDetails.classList.add("hidden");
+
+          try {
+            const response = await fetch("/api/parseListing", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ url }),
+            });
+
+            loadingMessage.classList.add("hidden");
+
+            if (!response.ok) {
+              const errorData = await response.json();
+              errorMessage.textContent =
+                errorData.error || "Failed to parse listing.";
+              errorMessage.classList.remove("hidden");
+              return;
+            }
+
+            const data = await response.json();
+
+            // Populate listing details
+            document.getElementById("listing-address").textContent =
+              data.address || "N/A";
+            document.getElementById("listing-price").textContent =
+              data.price || "N/A";
+            document.getElementById("listing-bedrooms").textContent =
+              data.bedrooms || "N/A";
+            document.getElementById("listing-bathrooms").textContent =
+              data.bathrooms || "N/A";
+
+            listingDetails.classList.remove("hidden");
+            successMessage.classList.remove("hidden");
+          } catch (error) {
+            console.error("Error parsing listing:", error);
+            loadingMessage.classList.add("hidden");
+            errorMessage.textContent = "An unexpected error occurred.";
+            errorMessage.classList.remove("hidden");
+          }
+        });
     </script>
   </body>
 </html>

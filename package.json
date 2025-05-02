@@ -10,7 +10,12 @@
     "dev:css": "tailwindcss -i ./public/styles.css -o ./public/output.css --watch"
   },
   "dependencies": {
-    "express": "^5.0.0"
+    "@types/cheerio": "^0.22.35",
+    "axios": "^1.9.0",
+    "cheerio": "^1.0.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.0.0",
+    "next": "^15.3.1"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
