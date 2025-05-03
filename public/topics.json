@@ -14,5 +14,27 @@
   "negotiatingFees": {
     "title": "Negotiating Your Fees",
     "content": "<p>Discover how to structure your offer to maximize seller concessions and reduce your closing costs.</p>"
-  }
+  },
+  "topics": [
+    {
+      "id": "earnest-money",
+      "title": "Earnest Money",
+      "description": "A deposit made to demonstrate a buyer's serious intent to purchase a home.",
+      "links": [{ "text": "Learn more on HUD", "url": "https://www.hud.gov" }]
+    },
+    {
+      "id": "buyer-agent-steering",
+      "title": "Buyer Agent Steering",
+      "description": "When agents direct buyers toward or away from certain properties based on commission.",
+      "links": [{ "text": "FHFA Guidance", "url": "https://www.fhfa.gov" }]
+    },
+    {
+      "id": "grant-eligibility",
+      "title": "Grant Eligibility",
+      "description": "Criteria to qualify for homebuyer grants and assistance programs.",
+      "links": [
+        { "text": "Fannie Mae Resources", "url": "https://www.fanniemae.com" }
+      ]
+    }
+  ]
 }

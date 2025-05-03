@@ -8,3 +8,14 @@ export interface ListingData {
   propertyType: string;
   description: string;
 }
+
+export interface Offer {
+  lenderName: string;
+  rate: number;
+  apr: number;
+  loanAmount: number;
+  monthlyPayment: number;
+  fees: number;
+  offerDate: string;
+  expirationDate: string;
+}

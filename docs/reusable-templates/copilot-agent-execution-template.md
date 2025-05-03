@@ -1,43 +1,54 @@
-# Copilot Agent Execution Template
+
 
 ## Task Overview
 
-Clearly describe the outcome or behavior you want to achieve. Focus on the objective — not on how it gets implemented or where.
+Describe the outcome or behavior you want to achieve. Focus on the *objective*, not the *implementation*. This should state what the system should accomplish from the user’s point of view.
 
 ## Expected Output
 
-Define what success looks like:
+### ✅ User Experience
 
-* **User Experience**: What should the user see, do, or receive?
-* **System Changes**: What should update or improve?
-* **Behavior**: What should happen automatically or conditionally?
+* What should the user be able to see, do, or accomplish once this is complete?
+* Think in terms of benefits or capabilities (e.g. "users can get mortgage offers from 3 lenders" or "users can get context-aware education").
+
+### ✅ System Changes
+
+* What changes should happen behind the scenes?
+* This could be improvements in logic, behavior, or automation — but **don’t** mention filenames, methods, or specific components.
+
+### ✅ Behavior
+
+* What should happen automatically or conditionally?
+* Include event-driven expectations (e.g. "when a user reaches Step 3, they’re offered education about inspections").
 
 ## Instruction Rule: Outcome Only — Let Copilot Decide the How
 
-✅ Tell Copilot the goal.
-🛑 Don’t mention filenames, methods, lines, or implementation details.
+✅ Describe what the system should accomplish.
+🛑 **Avoid** referencing file names, method names, components, folders, functions, or line numbers.
 
-Let Copilot use workspace context to determine the correct files, functions, and dependencies.
+Let Copilot use full workspace context to determine which files or modules need to be created, updated, or referenced.
 
-#### Examples:
+### Good Examples:
 
-* ✅ “Real Zillow data shows in UI instead of mock.”
-* ❌ “Update parseZillowHTML.ts to fix fallback returns.”
+* ✅ “Buyers should see real mortgage rates based on listing ZIP code.”
+* ✅ “Users get a prompt to learn more about grant eligibility after they reach the pre-approval step.”
+* ❌ “Update `parseZillow.ts` to return ZIP code.”
+* ❌ “Add grant explanation in `learn-more.html`.”
 
 ## Optional Notes
 
-You may provide business rules, platform constraints, or user priorities. These guide Copilot’s decisions without dictating structure.
+You can add platform constraints, business rules, or user expectations that should be considered, without dictating how to solve them.
 
-#### Examples:
+### Examples:
 
-* Must support mobile users.
-* Needs to preserve accessibility.
-* Should gracefully degrade if Zillow data is malformed.
+* Must support mobile and desktop.
+* Should handle incomplete or missing data gracefully.
+* Must maintain accessibility compliance.
 
 ## Success Criteria
 
-* The goal is met.
-* All required dependencies are updated automatically.
-* No regressions or broken functionality.
+* The intended goal is met from the user’s perspective.
+* Any data dependencies or logic paths update as expected.
+* No regressions or broken flows are introduced.
 
-This template is for strategic guidance. You define the outcome. Copilot handles implementation with full workspace awareness.
+This template is for **strategic guidance**, not implementation detail. You define *what* to build — Copilot decides *how*.
