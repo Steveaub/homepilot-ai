@@ -1,99 +1,52 @@
 # 🏠 HomePilot AI
 
-**HomePilot AI** is your intelligent home buying companion — designed to guide users through the home buying journey without needing a traditional real estate agent.
+**The AI Project Manager for Buying a Home — Without the Agent Pressure**
 
-Built with modern AI tools like GitHub Copilot Agents, Supabase, and LLMs, HomePilot AI empowers buyers to manage every step of the process: from pre-qualification to closing — agent optional, empowerment by default.
-
----
-
-## 🚀 Features
-
-- ✅ Conversational onboarding (no forms!)
-- 📋 Step-by-step home buying checklists
-- 🧠 AI-guided decision making and document drafting
-- 🤖 AI agents that can:
-  - Search for homes
-  - Fill out first-time buyer grant applications
-  - Negotiate and follow up with sellers or agents
-- 📊 Visual workflow and task tracker
-- 🔒 Legal review or expert escalation (flat fee, optional)
+HomePilot AI is your intelligent, step-by-step homebuying companion. It helps you buy a home without relying on a traditional agent or paying a 6% commission — all while giving you tools to manage every part of the process with confidence.
 
 ---
 
-## 🛠 Tech Stack
+## 🚨 Why Now?
 
-- **Frontend:** React (Next.js or Vite)
-- **Backend:** Supabase (PostgreSQL, Auth)
-- **AI Agents:** GitHub Copilot Chat + Copilot Agent + LLM APIs
-- **MCP Protocol:** VS Code MCP server with Postgres integration
+Real estate is in flux. Lawsuits like _Sitzer-Burnett_ are shaking the industry, but buyers still face:
+
+- Pressure to sign with agents
+- Hidden commission schemes
+- A chaotic, opaque process
+
+**HomePilot is designed for this new era — empowering agent-optional homebuying, with AI-guided execution from search to close.**
 
 ---
 
-## 📂 Project Structure
+## 🧠 What It Does
+
+HomePilot uses AI to break down homebuying into manageable tasks — just like project management software.
+
+Key capabilities:
+
+- ✅ **Conversational onboarding** (no forms)
+- 📋 **Step-by-step task plans** tailored to your timeline, credit, and location
+- 🤖 **AI agents** that:
+  - Apply for down payment grants
+  - Shop mortgage rates
+  - Escalate when agents or sellers ghost you
+  - Schedule inspections or title services
+- 🔁 **Paste-to-Parse:** paste any listing URL (Zillow, Redfin, etc.) to generate smart next steps
+- 📊 **Live workflow dashboard** to track your progress
+- ⚖️ **Optional expert escalation** (flat fee)
+- 🛠 **Agent Marketplace:** Access specialized agents for financing, inspection, and negotiation tasks
+
+---
+
+## 🧪 Sample API Call
 
 ```bash
-├── .env.local               # Environment variables
-├── prd.md                   # Product Requirements Document
-├── copilot.project.empty.md # Copilot AI planning doc
-├── README.md                # You're here!
+curl -X POST http://localhost:3000/api/parse-listing \
+  -H "Content-Type: application/json" \
+  -d '{
+    "url": "https://www.zillow.com/homedetails/1329-Polk-St-Hollywood-FL-33019/43333906_zpid/"
+  }'
 ```
-
----
-
-## 📚 Documentation and References
-
-### Strategic Insights
-## Documentation and Research Insights
-
-### Real Buyer and Seller Insights
-- [Hacker News Real Estate Disruption Insights](docs/hackernews-insights.md)
-- [New York Times Buyer/Seller Frustration Insights](docs/nytimes-comment-insights.md)
-
-### Competitive Research
-- [HomePilot vs Homa Competitive Agent Instructions](docs/homepilot-vs-homa-agent-instructions.md)
-- [Competitive Intelligence Overview](docs/competitive-intelligence.md)
-
-### Product Development
-
-- [Product Requirements Document (PRD)](docs/prd.md)
-- [Copilot Agent Execution Template](docs/copilot-agent-execution-template.md)
-
----
-
-## 🧠 Why Now?
-
-The real estate industry is undergoing major disruption due to lawsuits like _Sitzer-Burnett_ and _Batton2_. HomePilot AI positions itself as the **TurboTax for real estate** — built for this new era of buyer empowerment.
-
----
-
-## 🚦 Getting Started
-
-1. **Install dependencies**
-
-   ```bash
-   npm install
-   ```
-
-2. **Start the dev server**
-
-   ```bash
-   npm run dev
-   ```
-
-3. **Test the API**
-   Paste any real estate listing URL to see structured property info and smart next steps.
-
-   ```bash
-   curl -X POST http://localhost:3000/api/parse-listing \
-     -H "Content-Type: application/json" \
-     -d '{
-       "url": "https://www.zillow.com/homedetails/1329-Polk-St-Hollywood-FL-33019/43333906_zpid/"
-     }'
-   ```
-
----
-
-## 🧾 Example API Response
 
 ```json
 {
@@ -120,31 +73,78 @@ The real estate industry is undergoing major disruption due to lawsuits like _Si
 
 ---
 
-## Development Standards
+## 🧱 Tech Stack
 
-- [Copilot Agent Execution Template](docs/copilot-agent-execution-template.md)
-
----
-
-## 🤖 Built With
-
-- TypeScript + Node.js
-- Express.js
-- GitHub Copilot Agents
-- OpenAI (simulated fallback)
-- Modular API-first architecture
+- **Frontend:** React (Next.js or Vite)
+- **Backend:** Node.js + Supabase (PostgreSQL with RLS)
+- **AI Agents:** GitHub Copilot Agents + OpenAI APIs
+- **Architecture:** Modular, API-first with MCP Protocol for Copilot context sync
+- **Infra Features:** Visual state manager, escalation logic, task-based context sync
 
 ---
 
-## 🛣 Roadmap
+## 📚 Documentation
 
-- 🔌 Real API integration (Estated, RentCast, ATTOM)
-- 🤖 AI agents for scheduling, negotiation, and legal review
-- 🌐 Frontend UI (React or Next.js)
-- 🔒 Secure offer-building flow
+Strategic and product design references:
+
+- [Product Requirements Document](./docs/project-specific/prd.md)
+- [NYTimes Comment Insights](./docs/project-specific/nytimes-comment-insights.md)
+- [Hacker News Buyer Frustrations](./docs/project-specific/hackernews-insights.md)
+- [HomePilot vs. Homa Agent Analysis](./docs/project-specific/homepilot-vs-homa-agent.md)
+- [Copilot Agent Execution Template](./docs/reusable-templates/copilot-agent-execution-template.md)
+- [Multi-Agent Coordination Framework](./docs/reusable-templates/multi-agent-coordination-framework.md)
+- [Operations Workflow](./docs/reusable-templates/operations-workflow.md)
 
 ---
 
-## 🧑‍💻 Author
+## 💰 Business Model
 
-Made by [@Steveaub](https://github.com/steveaub) — built for first-time buyers, by someone who's changing how homes are bought.
+- **Freemium:** Core planning tools are free
+- **Flat-fee Upsells:** $99–$499 for document review, negotiation, or AI concierge upgrades
+- **Referrals:** Trusted vendors (mortgage, inspection, legal)
+- **B2B Licensing:** Future SaaS for FSBO platforms and credit unions
+
+---
+
+## ✅ Success Metrics
+
+- Onboarding completion rate
+- Task plan generation rate
+- Agent feature usage
+- Offer letter creation
+- Revenue per active buyer (target: $500)
+
+---
+
+## 🛠 Local Dev Setup
+
+```bash
+npm install
+npm run dev
+```
+
+Requires `.env.local` with Supabase and OpenAI credentials.
+
+---
+
+## 🛣 Roadmap Highlights
+
+- [ ] Add real data enrichment (Estated, ATTOM, RentCast)
+- [ ] Multi-agent dashboard and task visualizer
+- [ ] Offer letter builder + legal doc gen
+- [ ] FSBO seller toolkit (Phase 2)
+- [ ] Enhanced escalation logic with fallback agents
+
+---
+
+## 👤 Author
+
+Built by [@steveaub](https://www.linkedin.com/in/steveaubourg/) — certified PMP, ex-financial planner, and CS master’s student focused on AI.
+
+> “I’ve built thousands of financial plans, but none ever showed anyone how to buy a home. HomePilot fixes that.”
+
+---
+
+## 🔐 Legal Note
+
+HomePilot AI does not act as a real estate broker or agent. We offer task guidance and access to experts — but you stay in control.

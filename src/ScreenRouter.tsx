@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import ParseListingScreen from "./services/ParseListingScreen"; // Adjusted for case sensitivity
-import MortgageAgent from "./services/FinancingAgent"; // Ensure consistent import naming
+import FinancingAgent from "./services/FinancingAgent.logic"; // Updated to match the renamed file
 import EscalationUI from "./services/escalationUI";
 import OfferTracker from "./services/OfferTracker";
+import NextStepsEngine from "./services/NextStepsEngine";
 import { useOfferContext } from "./context/OfferContext";
 
 const ScreenRouter: React.FC = () => {
@@ -27,8 +28,9 @@ const ScreenRouter: React.FC = () => {
       {currentScreen === "ParseListingScreen" && (
         <ParseListingScreen onParseComplete={handleParseComplete} />
       )}
+      {selectedOffer && <NextStepsEngine parsedOffer={selectedOffer} />}
       {currentScreen === "MortgageAgent" && (
-        <MortgageAgent onPreApprovalComplete={handlePreApprovalComplete} />
+        <FinancingAgent onPreApprovalComplete={handlePreApprovalComplete} />
       )}
       {currentScreen === "EscalationUI" && (
         <EscalationUI
