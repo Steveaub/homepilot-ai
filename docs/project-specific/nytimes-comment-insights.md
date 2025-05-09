@@ -7,7 +7,7 @@
 **Primary Source:** New York Times Article - _"Home Sellers and Buyers Accuse Realtors of Blocking Lower Fees"_ (March 15, 2025)
 
 - **Summary:** A year after a landmark settlement, buyers and sellers report that little has changed. Many still feel pressured to pay traditional real estate commissions, despite legal reforms meant to encourage fee negotiation and transparency.
-- **Comment Analysis Base:** This insight analysis is based on over 200 user comments collected under the article, representing real-world experiences and frustrations from homebuyers and sellers nationwide.
+- **Comment Analysis Base:** This insight analysis is based on over 1000 user comments collected under the article, representing real-world experiences and frustrations from homebuyers and sellers nationwide.
 
 ---
 
@@ -91,5 +91,5 @@
 **Document Use:**
 
 - Save to `/docs/` in HomePilot AI GitHub repo.
-- Reference in product, UX, marketing, and YC application materials.
+- Reference in product, UX, and marketing.
 - Build buyer and seller personas directly from comment patterns.
