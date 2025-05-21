@@ -100,12 +100,11 @@ const OfferTracker: React.FC = () => {
   const handleOfferSubmission = (offerId: string) => {
     const offer = offers.find((o) => o.id === offerId);
     if (offer) {
-      triggerOfferInspection(offer, (detectedIssues) => {
-        setIssues(detectedIssues);
-        if (detectedIssues.length > 0) {
-          setShowIssueModal(true);
-        }
-      });
+      setOffers((prevOffers) =>
+        prevOffers.map((o) =>
+          o.id === offerId ? { ...o, status: "Drafted" } : o
+        )
+      );
     }
   };
 

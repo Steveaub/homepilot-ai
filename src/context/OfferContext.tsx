@@ -5,7 +5,12 @@ export type Offer = {
   id: string;
   propertyAddress: string;
   submissionDate: string;
-  status: "Responded" | "Awaiting" | "Escalation Ready" | "Accepted"; // Added "Accepted" as a valid status
+  status:
+    | "Responded"
+    | "Awaiting"
+    | "Escalation Ready"
+    | "Accepted"
+    | "Drafted"; // Added "Drafted" as a valid status
   agentEmail?: string;
   brokerEmail?: string;
   sellerEmail?: string;
@@ -37,6 +42,7 @@ interface OfferContextType {
   setReminderOffer: (offer: OfferWithDeadlines | null) => void;
   updateDeadline: (offerId: string, deadline: Deadline) => void;
   setOffers: React.Dispatch<React.SetStateAction<OfferWithDeadlines[]>>; // Added setOffers property
+  logTaskCompletion: (offerId: string) => void; // Added logTaskCompletion to the context type
 }
 
 const OfferContext = createContext<OfferContextType | undefined>(undefined);
@@ -142,6 +148,14 @@ export const OfferProvider: React.FC<{ children: React.ReactNode }> = ({
     );
   };
 
+  const logTaskCompletion = (offerId: string) => {
+    setOffers((prevOffers) =>
+      prevOffers.map((offer) =>
+        offer.id === offerId ? { ...offer, status: "Drafted" } : offer
+      )
+    );
+  };
+
   return (
     <OfferContext.Provider
       value={{
@@ -154,6 +168,7 @@ export const OfferProvider: React.FC<{ children: React.ReactNode }> = ({
         setReminderOffer,
         updateDeadline,
         setOffers,
+        logTaskCompletion, // Added logTaskCompletion to context
       }}
     >
       {children}
